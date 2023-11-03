@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "rq5cJnY5iYkkYP5G0UYJ5oWI4x1m/6jOf8Abt3MDKyvpUx0cp4kUIRb+X7avktwY5w5zM2k9PhuxbkuVFAMRSA==",
+  "success": true,
+  "projectFilePath": "D:\\Testovi\\4CreateTest\\Presentation\\Presentation.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.0\\fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

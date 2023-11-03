@@ -1,0 +1,11 @@
+D:\Testovi\4CreateTest\Domain\bin\Debug\net7.0\Domain.deps.json
+D:\Testovi\4CreateTest\Domain\bin\Debug\net7.0\Domain.dll
+D:\Testovi\4CreateTest\Domain\bin\Debug\net7.0\Domain.pdb
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.dll
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\refint\Domain.dll
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.pdb
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\ref\Domain.dll

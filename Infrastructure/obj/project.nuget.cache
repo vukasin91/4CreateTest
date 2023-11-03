@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "FZ9KfgFc5H3CCy+OFtRO2mQ8D677rb2vgXoj/tMa/GCftoWcyLU31oxlvSI8yULQtQUz30LyW3m8kvLF0aUPnw==",
+  "success": true,
+  "projectFilePath": "D:\\Testovi\\4CreateTest\\Infrastructure\\Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.8.0\\fluentvalidation.dependencyinjectionextensions.11.8.0.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Olga Simic\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
