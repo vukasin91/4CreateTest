@@ -5,11 +5,11 @@ namespace Domain.Entities;
 
 public class SystemLog<T> where T : Entity
 {
-    public SystemLog(T resourceType, EventType eventype, ChangeSet resourceAttributes, string comment)
+    public SystemLog(T resourceType, EventType evenType, ChangeSet resourceAttributes, string comment)
     {
         EntityType = resourceType;
         CreatedAt = DateTime.UtcNow;
-        Event = eventype;
+        Event = evenType;
         EntityAttributes = resourceAttributes;
         Comment = comment;
     }

@@ -15,6 +15,8 @@ public sealed class Company : Entity
     {
     }
 
-    public string Name { get; private set; }
-    public DateTime CreatedAt { get; private set; }
+    public string Name { get; set; }
+    public DateTime CreatedAt { get; set; }
+
+    public List<Employee> Employees { get; } = new();
 }

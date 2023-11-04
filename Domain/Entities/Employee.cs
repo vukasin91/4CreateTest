@@ -16,10 +16,12 @@ public sealed class Employee : Entity
 
     private Employee() { }
 
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string Email { get; private set; }
-    public EmployeeType Title { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime? LastModifiedAt { get; private set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public EmployeeType Title { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? LastModifiedAt { get; set; }
+
+    public List<Company> Companies { get; } = new();
 }
