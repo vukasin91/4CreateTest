@@ -4,5 +4,6 @@ public enum EventType
 {
     Create,
     Update,
-    Delete
+    Delete,
+    Get
 }

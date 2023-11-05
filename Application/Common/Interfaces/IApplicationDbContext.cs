@@ -7,7 +7,7 @@ public interface IApplicationDbContext
 {
     DbSet<Employee> Employees { get; set; }
     DbSet<Company> Companies { get; set; }
-    //DbSet<SystemLog<T>> SystemLogs { get; set; }
+    DbSet<SystemLog> SystemLogs { get; set; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

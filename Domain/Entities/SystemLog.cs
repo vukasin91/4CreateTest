@@ -3,25 +3,51 @@ using Domain.Enums;
 
 namespace Domain.Entities;
 
-public class SystemLog<T> where T : Entity
+public class SystemLog : Entity
 {
-    public SystemLog(T resourceType, EventType evenType, ChangeSet resourceAttributes, string comment)
-    {
-        EntityType = resourceType;
-        CreatedAt = DateTime.UtcNow;
-        Event = evenType;
-        EntityAttributes = resourceAttributes;
-        Comment = comment;
-    }
-
-    public T EntityType { get; set; }
+    public string EntityType { get; set; }
+    public int EntityId { get; set; }
     public DateTime CreatedAt { get; set; }
     public EventType Event { get; set; }
-    public ChangeSet EntityAttributes { get; set; }
+    public string EntityAttributes { get; set; }
     public string? Comment { get; set; }
-}
 
-public class ChangeSet
-{
-    public Dictionary<string, object> Changes { get; set; } = new Dictionary<string, object>();
+    private SystemLog(
+        string entityType,
+        int entityId,
+        EventType evenType,
+        string entityAttributes,
+        string? comment)
+    {
+        EntityType = entityType;
+        EntityId = entityId;
+        Event = evenType;
+        EntityAttributes = entityAttributes;
+        Comment = comment;
+        CreatedAt = DateTime.UtcNow;
+    }
+
+    private SystemLog()
+    {
+    }
+
+    public static SystemLog Create(
+        string entityType,
+        int entityId,
+        EventType eventType,
+        string entityAttributes,
+        string? comment
+        )
+    {
+        ArgumentException.ThrowIfNullOrEmpty(entityType, "Resource type could not be null or empty");
+        ArgumentException.ThrowIfNullOrEmpty(nameof(eventType), "Event type could not be null or empty");
+        ArgumentException.ThrowIfNullOrEmpty(entityAttributes, "Change set could not be null or empty");
+
+        return new SystemLog(
+            entityType,
+            entityId,
+            eventType,
+            entityAttributes,
+            comment);
+    }
 }

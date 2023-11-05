@@ -13,6 +13,5 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
 
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Company> Companies { get; set; }
-
-    //public DbSet<SystemLog> SystemLogs { get; set; };
+    public DbSet<SystemLog> SystemLogs { get; set; }
 }

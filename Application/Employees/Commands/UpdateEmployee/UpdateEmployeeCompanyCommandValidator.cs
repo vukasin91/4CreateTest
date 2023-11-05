@@ -2,9 +2,9 @@
 
 namespace Application.Employees.Commands.UpdateEmployee;
 
-public class UpdateEmployeeCommandValidator : AbstractValidator<UpdateEmployeeCommand>
+public class UpdateEmployeeCompanyCommandValidator : AbstractValidator<UpdateEmployeeCommand>
 {
-    public UpdateEmployeeCommandValidator()
+    public UpdateEmployeeCompanyCommandValidator()
     {
         RuleFor(v => v.FirstName)
              .MaximumLength(50)

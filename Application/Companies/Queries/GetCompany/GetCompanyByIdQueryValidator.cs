@@ -1,5 +1,5 @@
 ﻿namespace Application.Companies.Queries.GetCompany;
 
-internal class GetCompanyQueryValidator
+internal class GetCompanyByIdQueryValidator
 {
 }
