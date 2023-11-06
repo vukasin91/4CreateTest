@@ -15,7 +15,7 @@ public static class CompanyModule
 {
     public static void AddCompanyEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapPost("companies", async (CreateCompanyCommand command, ISender sender) =>
+        app.MapPost("companies", async ([FromBody]CreateCompanyCommand command, ISender sender) =>
         {
             await sender.Send(command);
 

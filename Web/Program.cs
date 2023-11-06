@@ -24,7 +24,17 @@ builder.Host
     configuration.ReadFrom.Configuration(context.Configuration));
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<ApplicationDbContextInitializer>>();
+    var initializer = new ApplicationDbContextInitializer(
+        services.GetRequiredService<ApplicationDbContext>(), logger);
 
+    // Initialize and seed the database
+    await initializer.InitializeAsync();
+    await initializer.SeedAsync();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -34,15 +44,6 @@ if (app.Environment.IsDevelopment())
 
 app.AddCompanyEndpoints();
 app.AddEmployeeEndpoints();
-
-using (var scope = app.Services.CreateScope())
-{
-    var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitializer>();
-
-    await initialiser.InitializeAsync();
-
-    await initialiser.SeedAsync();
-}
 
 app.UseSerilogRequestLogging();
 

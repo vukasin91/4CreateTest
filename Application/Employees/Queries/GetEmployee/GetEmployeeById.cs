@@ -27,29 +27,24 @@ public sealed class GetEmployeeByIdCommandHandler : IRequestHandler<GetEmployeeB
 
     public async Task<GetEmployeeByIdDto> Handle(GetEmployeeByIdCommand request, CancellationToken cancellationToken)
     {
-        var employee = await _context.Employees
+        var entity = await _context.Employees
             .AsNoTracking()
             .Include(e => e.Companies)
-            .Select(e => new GetEmployeeByIdDto(
-                e.Id,
-                $"{e.FirstName} {e.LastName}",
-                e.Email,
-                e.Title.ToString()))
             .FirstOrDefaultAsync(e => e.Id == request.EmployeeId);
 
-        if (employee is null)
+        if (entity is null)
         {
             _logger.LogError($"Employee with id {request.EmployeeId} is not found in db.");
             throw new EmployeeNotFoundException(request.EmployeeId.ToString());
         }
+        var employee = new GetEmployeeByIdDto(
+                entity.Id,
+                $"{entity.FirstName} {entity.LastName}",
+                entity.Email,
+                entity.Title.ToString());
 
         var systemLogCommand = SystemLogHelper.PrepareEmployeeSystemLogCommand(
-            Employee.Create(
-                employee.FullName,
-                null,
-                employee.Email,
-                Enum.Parse<EmployeeType>(employee.Title),
-                null),
+           entity,
             $"% retrieving employee with email {employee.Email}%",
             EventType.Get);
 

@@ -5,9 +5,9 @@ namespace Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
-    DbSet<Employee> Employees { get; set; }
-    DbSet<Company> Companies { get; set; }
-    DbSet<SystemLog> SystemLogs { get; set; }
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Company> Companies { get; set; }
+    public DbSet<SystemLog> SystemLogs { get; set; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

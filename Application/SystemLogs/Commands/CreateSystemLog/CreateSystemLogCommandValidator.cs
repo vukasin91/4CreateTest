@@ -15,7 +15,6 @@ public class CreateSystemLogCommandValidator : AbstractValidator<CreateSystemLog
             .NotNull();
 
         RuleFor(v => v.EventType)
-            .NotEmpty()
             .NotNull();
 
         RuleFor(v => v.EntityAttributes)

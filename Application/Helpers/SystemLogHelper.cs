@@ -19,7 +19,7 @@ public static class SystemLogHelper
                 { nameof(entity.FirstName),  entity.FirstName },
                 { nameof(entity.LastName),  entity.LastName },
                 { nameof(entity.Email),  entity.Email },
-                { nameof(entity.Title),  entity.Title }
+                { nameof(entity.Title),  entity.Title.ToString() }
             };
         }
 

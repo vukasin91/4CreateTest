@@ -2,15 +2,24 @@
 using Application.Employees.Commands.CreateEmployee;
 using Application.Helpers;
 using Domain.Entities;
+using Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Dynamic;
 
 namespace Application.Companies.Commands.CreateCompany;
 
 public record CreateCompanyCommand(
     string CompanyName,
-    IEnumerable<Employee> Employees) : IRequest;
+    IEnumerable<EmployeeDto> Employees) : IRequest;
+
+public record EmployeeDto(
+    string? FirstName,
+    string? LastName,
+    string? Email,
+    string? Title,
+    int id);
 
 public sealed class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyCommand>
 {
@@ -32,19 +41,24 @@ public sealed class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyC
             var nonExisitngEmployees = request.Employees
                 .Where(x => !string.IsNullOrWhiteSpace(x.Email)).ToList();
 
-            //now in request we only have existing employees
+            //now in request we only have existing employees in db
             request.Employees
                 .ToList()
-                .RemoveAll(e => string.IsNullOrWhiteSpace(e.Email));
+                .RemoveAll(e => string.IsNullOrWhiteSpace(e.Email) && e.id == 0);
+
+            var existingEmployeesIds = request.Employees.Select(x => x.id);
+
+            var employees = await _context.Employees
+                .Where(x => existingEmployeesIds.Any(e => e == x.Id))
+                .ToListAsync();
 
             var newCompany = Company.Create(request.CompanyName);
+            _context.Companies.Add(newCompany);
 
-            foreach (var employee in request.Employees)
+            foreach (var employee in employees)
             {
                 newCompany.AddEmployee(employee);
             }
-
-            _context.Companies.Add(newCompany);
 
             await _context.SaveChangesAsync(cancellationToken);
 
@@ -71,7 +85,7 @@ public sealed class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyC
         }
     }
 
-    private async Task CreateNewEmployees(List<Employee> nonExisitngEmployees, IEnumerable<int> companyId, CancellationToken cancellationToken)
+    private async Task CreateNewEmployees(List<EmployeeDto> nonExisitngEmployees, IEnumerable<int> companyId, CancellationToken cancellationToken)
     {
         foreach (var employee in nonExisitngEmployees)
         {
@@ -80,7 +94,7 @@ public sealed class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyC
                 employee.FirstName,
                 employee.LastName,
                 employee.Email,
-                employee.Title.ToString()
+                Enum.Parse<EmployeeType>(employee.Title)
                 );
 
             await _mediator.Send(createEmployeeCommand, cancellationToken);

@@ -47,21 +47,22 @@ public sealed class Employee : Entity
         string lastName,
         string email,
         EmployeeType title,
-        IEnumerable<Company> companies)
+        IEnumerable<Company>? companies)
     {
         ArgumentException.ThrowIfNullOrEmpty(firstName, "First Name of the employee could not be null or empty");
         ArgumentException.ThrowIfNullOrEmpty(lastName, "Last Name of the employee could not be null or empty");
         ArgumentException.ThrowIfNullOrEmpty(email, "Email of the employee could not be null or empty");
         ArgumentException.ThrowIfNullOrEmpty(nameof(title), "Employee title is invalid");
-        ArgumentException.ThrowIfNullOrEmpty(nameof(companies), "Companies could not be null or empty");
-
         var employee = new Employee(
             firstName,
             lastName,
             email,
             title);
-
-        employee._companies.AddRange(companies);
+        
+        if (companies is not null)
+        {
+            employee._companies.AddRange(companies);
+        }
 
         return employee;
     }
@@ -81,7 +82,7 @@ public sealed class Employee : Entity
         _companies.Add(company);
     }
 
-    public void RemoveCompany(Company company) 
+    public void RemoveCompany(Company company)
     {
         ArgumentException.ThrowIfNullOrEmpty(nameof(company), "Employee cannot be null or empty.");
 

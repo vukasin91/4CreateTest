@@ -13,7 +13,7 @@ public record CreateEmployeeCommand(
     string FirstName,
     string LastName,
     string Email,
-    string Title
+    EmployeeType Title
     ) : IRequest;
 
 
@@ -34,7 +34,7 @@ public sealed class CreateEmployeeCommandHandler : IRequestHandler<CreateEmploye
     {
         try
         {
-            var employeeTitle = Enum.Parse<EmployeeType>(request.Title);
+            var employeeTitle = request.Title;
             var companies = await _context.Companies
                 .Where(c => request.CompaniesIds.Any(rc => rc == c.Id))
                 .ToListAsync(cancellationToken);

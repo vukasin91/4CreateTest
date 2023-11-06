@@ -27,26 +27,25 @@ public sealed class GetCompanyByIdCommandHandler : IRequestHandler<GetCompanyByI
 
     public async Task<GetCompanyDto> Handle(GetCompanyByIdCommand request, CancellationToken cancellationToken)
     {
-        var company = await _context.Companies
+        var entity = await _context.Companies
             .AsNoTracking()
             .Include(x => x.Employees)
-            .Select(x => new GetCompanyDto(
-                x.Id,
-                x.Name,
-                x.Employees,
-                x.CreatedAt))
             .FirstOrDefaultAsync(c => c.Id == request.CompanyId);
 
-        if (company is null)
+        if (entity is null)
         {
             _logger.LogError($"Company with id {request.CompanyId} is not found in db.");
             throw new EmployeeNotFoundException(request.CompanyId.ToString());
         }
 
+        var company = new GetCompanyDto(
+                entity.Id,
+                entity.Name,
+                entity.Employees,
+                entity.CreatedAt);
+
         var systemLogCommand = SystemLogHelper.PrepareCompanySystemLogCommand(
-            Company.Create(
-                company.Name
-                ),
+            entity,
             $"% retrieving company with Id {company.Id}%",
             EventType.Get);
 

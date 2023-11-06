@@ -1,14 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Data;
 
 public class ApplicationDbContextInitializer
 {
     private readonly ApplicationDbContext _context;
+    private readonly ILogger<ApplicationDbContextInitializer> _logger;
 
-    public ApplicationDbContextInitializer(ApplicationDbContext context)
+    public ApplicationDbContextInitializer(ApplicationDbContext context, ILogger<ApplicationDbContextInitializer> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
     public async Task InitializeAsync()
@@ -19,7 +23,7 @@ public class ApplicationDbContextInitializer
         }
         catch (Exception ex)
         {
-            //_logger
+            _logger.LogError("Something went wrong while applying migrations", ex.Message);
             throw;
         }
     }
@@ -32,23 +36,24 @@ public class ApplicationDbContextInitializer
         }
         catch (Exception ex)
         {
-            //log
+            _logger.LogError("Something went wrong while seeding db", ex.Message);
             throw;
         }
     }
 
     private async Task TrySeedAsync()
     {
-        if (!_context.Employees.Any())
-        {
-            //_context.Employees.Add();
-        }
-
         if (!_context.Companies.Any())
         {
-            //_context.Companies.Add();
+            _context.Companies.Add(Company.Create("Company 1"));
+            _context.Companies.Add(Company.Create("Company 2"));
+            _context.Companies.Add(Company.Create("Company 3"));
         }
 
+        if (!_context.Employees.Any())
+        {
+            _context.Employees.Add(Employee.Create("John", "Doe", "john.doe@mail.com", Domain.Enums.EmployeeType.Developer, new List<Company> { Company.Create("Company 1") }));
+        }
         await _context.SaveChangesAsync();
     }
 }

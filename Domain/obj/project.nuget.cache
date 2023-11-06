@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yg6RIwGr63LL4vuuQu8NaDBZTc4RHZ7d7FPPBSlDDnDVezqJPDx2igrNh2PH4JQs4S2Gn3Y0oVX1tq7X+BtFKg==",
+  "dgSpecHash": "Tnr00cp8YButpBxrpzbSTrOTcwaLVjdn5IAZagOVvqF/O9nrWUah9R+ud6pDUWo45E/+/6I73c0jZtA6YXCR7g==",
   "success": true,
   "projectFilePath": "D:\\Testovi\\4CreateTest\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Olga Simic\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.12\\microsoft.netcore.app.ref.7.0.12.nupkg.sha512",
-    "C:\\Users\\Olga Simic\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.12\\microsoft.windowsdesktop.app.ref.7.0.12.nupkg.sha512",
-    "C:\\Users\\Olga Simic\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.12\\microsoft.aspnetcore.app.ref.7.0.12.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
