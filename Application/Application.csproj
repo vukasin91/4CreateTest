@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -9,27 +9,13 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
     <PackageReference Include="MediatR" Version="12.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Common\Behaviours\" />
-    <Folder Include="Common\Exceptions\" />
-    <Folder Include="Common\Models\" />
-    <Folder Include="Companies\Commands\CreateCompany\" />
-    <Folder Include="Companies\Commands\DeleteCompany\" />
-    <Folder Include="Companies\Commands\UpdateCompany\" />
-    <Folder Include="Companies\Queries\GetCompany\" />
-    <Folder Include="Employees\Commands\CreateEmployee\" />
-    <Folder Include="Employees\Commands\DeleteEmployee\" />
-    <Folder Include="Employees\Commands\UpdateEmployee\" />
-    <Folder Include="Employees\Queries\GetEmployeesWithPagination\" />
-    <Folder Include="Employees\Queries\GetEmployee\" />
   </ItemGroup>
 
 </Project>

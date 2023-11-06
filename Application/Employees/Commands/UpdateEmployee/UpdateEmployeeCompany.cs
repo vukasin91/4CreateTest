@@ -1,7 +1,10 @@
 ﻿using Application.Common.Interfaces;
+using Application.Employees.Commands.DeleteEmployee;
 using Application.Helpers;
+using Domain.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Application.Employees.Commands.UpdateEmployee;
 
@@ -13,11 +16,13 @@ public sealed class UpdateEmployeeCompanyCommandHandler : IRequestHandler<Update
 {
     private readonly IApplicationDbContext _context;
     private readonly IMediator _mediator;
+    private readonly ILogger<UpdateEmployeeCompanyCommandHandler> _logger;
 
-    public UpdateEmployeeCompanyCommandHandler(IApplicationDbContext context, IMediator mediator)
+    public UpdateEmployeeCompanyCommandHandler(IApplicationDbContext context, IMediator mediator, ILogger<UpdateEmployeeCompanyCommandHandler> logger)
     {
         _context = context;
         _mediator = mediator;
+        _logger = logger;
     }
 
     public async Task Handle(UpdateEmployeeCompanyCommand request, CancellationToken cancellationToken)
@@ -28,7 +33,8 @@ public sealed class UpdateEmployeeCompanyCommandHandler : IRequestHandler<Update
 
         if (employee is null)
         {
-            return;
+            _logger.LogError($"Employee with id {request.EmployeeId} is not found in db");
+            throw new EmployeeNotFoundException(request.EmployeeId.ToString());
         }
 
         var toBeDeleted = employee.Companies

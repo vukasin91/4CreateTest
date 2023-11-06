@@ -1,5 +1,9 @@
-﻿namespace Application.Companies.Queries.GetCompany;
+﻿using Domain.Entities;
 
-internal class GetCompanyDto
-{
-}
+namespace Application.Companies.Queries.GetCompany;
+
+public record GetCompanyDto(
+    int Id,
+    string Name,
+    IEnumerable<Employee> Employees,
+    DateTime CreatedAt);

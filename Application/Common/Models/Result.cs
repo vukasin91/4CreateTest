@@ -2,23 +2,28 @@
 
 public class Result
 {
-    internal Result(bool succeeded, IEnumerable<string> errors)
+    public bool IsSuccess { get; }
+    public bool IsFailure => !IsSuccess;
+    public string Error { get; }
+
+    protected Result(bool isSuccess, string error)
     {
-        Succeeded = succeeded;
-        Errors = errors.ToArray();
+        if (isSuccess && error != null)
+            throw new InvalidOperationException();
+        if (!isSuccess && error == null)
+            throw new InvalidOperationException();
+
+        IsSuccess = isSuccess;
+        Error = error;
     }
-
-    public bool Succeeded { get; init; }
-
-    public string[] Errors { get; init; }
 
     public static Result Success()
     {
-        return new Result(true, Array.Empty<string>());
+        return new Result(true, null);
     }
 
-    public static Result Failure(IEnumerable<string> errors)
+    public static Result Failure(string error)
     {
-        return new Result(false, errors);
+        return new Result(false, error);
     }
 }

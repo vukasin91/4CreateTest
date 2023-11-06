@@ -2,6 +2,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 namespace Application;
@@ -20,6 +21,10 @@ public static class DependencyInjection
         });
 
         services.AddValidatorsFromAssembly(assembly);
+        services.AddLogging(configuration =>
+        {
+            configuration.SetMinimumLevel(LogLevel.Information);
+        });
 
         return services;
     }

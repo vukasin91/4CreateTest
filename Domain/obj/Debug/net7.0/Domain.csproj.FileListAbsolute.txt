@@ -9,3 +9,4 @@ D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.dll
 D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\refint\Domain.dll
 D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.pdb
 D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\ref\Domain.dll
+D:\Testovi\4CreateTest\Domain\obj\Debug\net7.0\Domain.sourcelink.json

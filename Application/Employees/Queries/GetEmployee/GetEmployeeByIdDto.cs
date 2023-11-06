@@ -1,12 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Application.Employees.Queries.GetEmployee;
 
-namespace Application.Employees.Queries.GetEmployee
-{
-    internal class GetEmployeeByIdDto
-    {
-    }
-}
+public record GetEmployeeByIdDto(int Id, string FullName, string Email, string Title);

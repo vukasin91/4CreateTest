@@ -2,27 +2,15 @@
 
 namespace Application.Employees.Commands.UpdateEmployee;
 
-public class UpdateEmployeeCompanyCommandValidator : AbstractValidator<UpdateEmployeeCommand>
+public class UpdateEmployeeCompanyCommandValidator : AbstractValidator<UpdateEmployeeCompanyCommand>
 {
     public UpdateEmployeeCompanyCommandValidator()
     {
-        RuleFor(v => v.FirstName)
-             .MaximumLength(50)
+        RuleFor(v => v.EmployeeId)
              .NotEmpty()
              .NotNull();
 
-        RuleFor(v => v.LastName)
-            .MaximumLength(50)
-            .NotEmpty()
-            .NotNull();
-
-        RuleFor(v => v.Email)
-            .EmailAddress()
-            .NotEmpty()
-            .NotNull();
-
-        RuleFor(v => v.Title)
-            .IsInEnum()
+        RuleFor(v => v.CompanyIds)
             .NotNull()
             .NotEmpty();
     }
